@@ -1,89 +1,93 @@
 ﻿using System;
 
 namespace ConsoleApp8
-{  
-    using System;
-    class Program
-    {
-        private string model;
-        protected int power;
-        public bool OnOff;
+{
 
-        public string Brand
+        class Appliance
         {
-            get { return model; }
-            set { model = value; }
-        }
+            private string Brand;
+            protected int Power;
+            public bool Ison;
 
-        public void ON()
-        {
-            OnOff = true;
-            Console.WriteLine("Turned ON");
-        }
-
-        public void OFF()
-        {
-            OnOff = false;
-            Console.WriteLine("Turned OFF");
-        }
-
-        public void Info()
-        {
-            Console.WriteLine("Brand: " + model);
-            Console.WriteLine("Power: " + power);
-            Console.WriteLine("On off: " + OnOff);
-        
-    }
-
-        class Refrigirator : Program
-        {
-            public Refrigirator(string MODEL, int power)
+            public string getBrand
             {
-                this.model = MODEL;
-                this.power = power;
-                this.OnOff = false;
+                get { return Brand; }
+                set { Brand = value; }
             }
-        }
 
-        public void RefrigiratorDisplay()
-        {
-            Console.WriteLine("InfoRefrigirator");
+            public int getPower
+            {
+                get { return Power; }
+                set { Power = value; }
             
-        }
-
-        class WashingMachine: Program
-        {
-            public WashingMachine(string MODEL, int power)
-            {
-                this.model = MODEL;
-                this.power = power;
-                this.OnOff = false;
             }
 
-            public void InfoWashingMachineDisplay()
+            public void TurnOff()
             {
-                Console.WriteLine("InfoWashingMachine");
+                Ison = false;
+                Console.WriteLine($"{Brand} is turned off");
+            
+            }
+
+            public void TurnOn()
+            {
+                Ison = true;
+                Console.WriteLine($"{Brand} is turned on");
             }
         }
-        static void Main(string[] args)
+
+        class moshina : Appliance
         {
-           Refrigirator refrigirator = new Refrigirator("LG", 220);
-           WashingMachine washingMachine = new WashingMachine("FUL HD", 110);
-           
-           refrigirator.RefrigiratorDisplay();
-           refrigirator.ON();
-           refrigirator.OFF();
-           
-           Console.WriteLine(refrigirator.model);
-           
-           
-           washingMachine.InfoWashingMachineDisplay();
-           washingMachine.OnOff = true;
-           washingMachine.Info();
-           washingMachine.OnOff = false;
-           washingMachine.InfoWashingMachineDisplay();
-           
-           
+            public moshina()
+            {
+                getBrand = "mac book";
+                getPower = 93766;
+                Ison = false;
+            }
+
+            public moshina(string brand, int power)
+            {
+                getBrand = brand;
+                getPower = power;
+                Ison = false;
+            }
+        }
+
+        class xalados : Appliance
+        {
+            public xalados()
+            {
+                getBrand = "apple";
+                getPower = 80990;
+                Ison = false;
+            }
+
+            public xalados(string brand, int power)
+            {
+                getBrand = brand;
+                getPower = power;
+                Ison = false;
+            }
+        }
+
+        class Program
+        {
+            static void Main(string[] args)
+            {
+                moshina moshina1= new moshina();
+                moshina moshina2 = new moshina("mac",09853);
+                xalados xalados1 = new xalados();
+                xalados xalados2 = new xalados("apple", 98847);
+                Console.WriteLine(moshina1.getBrand);
+                Console.WriteLine(moshina1.getPower);
+                Console.WriteLine(moshina2.getBrand);
+                Console.WriteLine(moshina2.getPower);
+                Console.WriteLine(xalados1.getBrand);
+                Console.WriteLine(xalados1.getPower);
+                Console.WriteLine(xalados2.getBrand);
+                Console.WriteLine(xalados2.getPower);
+                
+            }
         }
     }
-}
+
